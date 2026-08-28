@@ -3,443 +3,53 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Aura Awareness — Learn to read your field</title>
+<title>Hero — Aura Awareness</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<section class="hero">
+  <h1>Build something great</h1>
+  <p>A short line of supporting text that explains what this is about.</p>
+  <a href="#" class="btn">Get Started</a>
+</section>
+
 <style>
-  :root{
-    --bg: #1c1530;
-    --bg-alt: #251c3c;
-    --surface: #2a2145;
-    --surface-line: #3a2e5a;
-    --text: #f2ecfb;
-    --text-dim: #b6a7d6;
-    --text-faint: #8577a8;
-
-    --sky:    #8fc8e8;   /* etheric */
-    --rose:   #e8a3bf;   /* emotional */
-    --gold:   #e3b23c;   /* mental */
-    --teal:   #7fd9be;   /* astral / heart */
-    --blue:   #6f86e8;   /* etheric template */
-    --violet: #a98ae8;   /* celestial */
-    --white:  #f4ecd8;   /* ketheric / causal */
-
-    --serif: 'Instrument Serif', Georgia, serif;
-    --sans: 'Work Sans', -apple-system, sans-serif;
+  .hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    min-height: 60vh;
+    padding: 40px 20px;
+    background: #f9f9f9;
   }
 
-  *{ margin:0; padding:0; box-sizing:border-box; }
-  html{ scroll-behavior:smooth; }
-  body{
-    background:var(--bg);
-    color:var(--text);
-    font-family:var(--sans);
-    line-height:1.5;
-    -webkit-font-smoothing:antialiased;
-    overflow-x:hidden;
-  }
-  ::selection{ background:var(--violet); color:var(--bg); }
-
-  a{ color:inherit; text-decoration:none; }
-  img,svg{ display:block; max-width:100%; }
-  .wrap{ max-width:1180px; margin:0 auto; padding:0 32px; }
-
-  /* subtle ambient glow field behind everything */
-  body::before{
-    content:'';
-    position:fixed; inset:0; z-index:0; pointer-events:none;
-    background:
-      radial-gradient(600px 400px at 85% -5%, rgba(169,138,232,0.16), transparent 60%),
-      radial-gradient(500px 400px at 5% 30%, rgba(127,217,190,0.09), transparent 60%);
+  .hero h1 {
+    font-size: 2.5rem;
+    margin-bottom: 16px;
   }
 
-  /* ---------- NAV ---------- */
-  header{
-    position:sticky; top:0; z-index:50;
-    background:rgba(28,21,48,0.72);
-    backdrop-filter:blur(10px);
-    border-bottom:1px solid var(--surface-line);
-  }
-  nav{
-    display:flex; align-items:center; justify-content:space-between;
-    padding:20px 32px; max-width:1180px; margin:0 auto;
-  }
-  .logo{
-    display:flex; align-items:center; gap:10px;
-    font-family:var(--serif); font-size:20px; letter-spacing:0.02em;
-  }
-  .logo .mark{ width:20px; height:20px; }
-  .navlinks{ display:flex; align-items:center; gap:36px; font-size:14px; color:var(--text-dim); }
-  .navlinks a{ transition:color .2s ease; }
-  .navlinks a:hover{ color:var(--text); }
-  .navlinks .cta{
-    color:var(--bg); background:var(--text); padding:9px 18px; border-radius:100px;
-    font-weight:500;
-  }
-  .navlinks .cta:hover{ background:var(--white); }
-  .navtoggle{ display:none; }
-
-  /* ---------- HERO ---------- */
-  .hero{
-    position:relative; z-index:1;
-    display:grid; grid-template-columns:1.05fr 0.95fr; align-items:center; gap:40px;
-    padding:96px 32px 88px; max-width:1180px; margin:0 auto;
-  }
-  .eyebrow{
-    display:inline-flex; align-items:center; gap:8px;
-    font-size:12.5px; letter-spacing:0.14em; text-transform:uppercase;
-    color:var(--text-faint); margin-bottom:22px;
-  }
-  .eyebrow::before{
-    content:''; width:6px; height:6px; border-radius:50%;
-    background:var(--violet); box-shadow:0 0 8px var(--violet);
-  }
-  .hero h1{
-    font-family:var(--serif); font-weight:400;
-    font-size:clamp(38px, 4.6vw, 60px);
-    line-height:1.06; letter-spacing:-0.01em;
-    max-width:11.5ch;
-  }
-  .hero h1 em{ font-style:italic; color:var(--rose); }
-  .hero p.lede{
-    margin-top:24px; font-size:17px; color:var(--text-dim);
-    max-width:46ch; font-weight:300;
-  }
-  .hero .actions{ display:flex; align-items:center; gap:22px; margin-top:36px; }
-  .btn-primary{
-    background:linear-gradient(135deg, var(--rose), var(--violet));
-    color:#1c1530; font-weight:600; font-size:14.5px;
-    padding:14px 26px; border-radius:100px;
-    box-shadow:0 8px 30px -8px rgba(169,138,232,0.55);
-    transition:transform .2s ease, box-shadow .2s ease;
-  }
-  .btn-primary:hover{ transform:translateY(-1px); box-shadow:0 10px 34px -6px rgba(169,138,232,0.7); }
-  .link-secondary{
-    font-size:14.5px; color:var(--text-dim); border-bottom:1px solid var(--surface-line);
-    padding-bottom:2px; transition:color .2s ease, border-color .2s ease;
-  }
-  .link-secondary:hover{ color:var(--text); border-color:var(--text-dim); }
-
-  /* hero rings visual */
-  .rings-stage{ position:relative; display:flex; align-items:center; justify-content:center; }
-  .rings-stage svg{ width:100%; max-width:460px; height:auto; }
-  .ring{ fill:none; stroke-width:1.4; opacity:0.85; transform-origin:230px 230px; }
-  .ring-glow{ fill:none; stroke-width:14; filter:blur(9px); opacity:0.35; transform-origin:230px 230px; }
-  @keyframes breathe{
-    0%,100%{ transform:scale(1); opacity:0.75; }
-    50%{ transform:scale(1.035); opacity:1; }
-  }
-  .r1{ animation:breathe 6.2s ease-in-out infinite; }
-  .r2{ animation:breathe 6.8s ease-in-out infinite .2s; }
-  .r3{ animation:breathe 7.4s ease-in-out infinite .4s; }
-  .r4{ animation:breathe 8.0s ease-in-out infinite .6s; }
-  .r5{ animation:breathe 8.6s ease-in-out infinite .8s; }
-  .r6{ animation:breathe 9.2s ease-in-out infinite 1s; }
-  .r7{ animation:breathe 9.8s ease-in-out infinite 1.2s; }
-  .core{ fill:var(--white); filter:blur(1px); }
-
-  @media (prefers-reduced-motion: reduce){
-    .ring, .ring-glow{ animation:none !important; }
+  .hero p {
+    font-size: 1.1rem;
+    color: #555;
+    max-width: 500px;
+    margin-bottom: 24px;
   }
 
-  /* ---------- SECTION SHELL ---------- */
-  section{ position:relative; z-index:1; padding:100px 0; }
-  .section-head{ max-width:640px; margin-bottom:56px; }
-  .section-head h2{
-    font-family:var(--serif); font-weight:400; font-size:clamp(30px,3.4vw,42px);
-    margin-top:14px; letter-spacing:-0.01em;
-  }
-  .section-head p{ margin-top:16px; color:var(--text-dim); font-size:16px; max-width:52ch; font-weight:300; }
-
-  .reveal{ opacity:0; transform:translateY(18px); transition:opacity .7s ease, transform .7s ease; }
-  .reveal.in{ opacity:1; transform:translateY(0); }
-
-  /* ---------- LAYERS SECTION ---------- */
-  .layers{ background:var(--bg-alt); border-top:1px solid var(--surface-line); border-bottom:1px solid var(--surface-line); }
-  .layers-grid{ display:grid; grid-template-columns:1fr 340px; gap:60px; align-items:start; }
-  .layer-list{ display:flex; flex-direction:column; }
-  .layer-row{
-    display:grid; grid-template-columns:28px 160px 1fr; align-items:baseline; gap:18px;
-    padding:20px 0; border-bottom:1px solid var(--surface-line);
-    cursor:default; transition:background .2s ease;
-  }
-  .layer-row:first-child{ border-top:1px solid var(--surface-line); }
-  .layer-row:hover{ background:rgba(255,255,255,0.02); }
-  .swatch{ width:12px; height:12px; border-radius:50%; align-self:center; box-shadow:0 0 10px currentColor; }
-  .layer-name{ font-family:var(--serif); font-size:19px; }
-  .layer-desc{ color:var(--text-dim); font-size:14.5px; font-weight:300; }
-
-  .diagram-pin{ position:sticky; top:120px; display:flex; justify-content:center; }
-  .diagram-pin svg{ width:220px; height:220px; }
-  .diagram-pin .ring{ transition:opacity .25s ease, stroke-width .25s ease; opacity:0.35; }
-  .diagram-pin .ring.active{ opacity:1; stroke-width:2.6; }
-
-  /* ---------- PRACTICE / OFFERINGS ---------- */
-  .cards{ display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
-  .card{
-    background:var(--surface); border:1px solid var(--surface-line);
-    border-radius:18px; padding:34px 28px; transition:transform .25s ease, border-color .25s ease;
-  }
-  .card:hover{ transform:translateY(-4px); border-color:var(--violet); }
-  .card .tag{ font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--text-faint); }
-  .card h3{ font-family:var(--serif); font-weight:400; font-size:24px; margin-top:10px; }
-  .card p{ margin-top:12px; color:var(--text-dim); font-size:14.5px; font-weight:300; }
-  .card .meta{ margin-top:22px; display:flex; justify-content:space-between; align-items:center; font-size:13.5px; color:var(--text-faint); border-top:1px solid var(--surface-line); padding-top:16px; }
-
-  /* ---------- QUOTE ---------- */
-  .quote{ text-align:center; }
-  .quote blockquote{
-    font-family:var(--serif); font-style:italic; font-size:clamp(24px,3vw,34px);
-    max-width:20ch; margin:0 auto; line-height:1.4; color:var(--text);
-  }
-  .quote cite{ display:block; margin-top:22px; font-style:normal; font-size:14px; color:var(--text-faint); }
-
-  /* ---------- CTA BANNER ---------- */
-  .cta-banner{
-    background:linear-gradient(135deg, rgba(232,163,191,0.14), rgba(111,134,232,0.14));
-    border:1px solid var(--surface-line); border-radius:24px;
-    padding:64px 48px; text-align:center;
-  }
-  .cta-banner h2{ font-family:var(--serif); font-weight:400; font-size:clamp(28px,3.6vw,40px); }
-  .cta-banner p{ color:var(--text-dim); margin-top:14px; font-weight:300; }
-  .cta-banner .btn-primary{ margin-top:28px; display:inline-block; }
-
-  /* ---------- FOOTER ---------- */
-  footer{ border-top:1px solid var(--surface-line); padding:56px 0 40px; position:relative; z-index:1; }
-  .foot-top{ display:flex; justify-content:space-between; flex-wrap:wrap; gap:40px; }
-  .foot-brand .logo{ margin-bottom:14px; }
-  .foot-brand p{ color:var(--text-faint); font-size:13.5px; max-width:32ch; font-weight:300; }
-  .foot-cols{ display:flex; gap:64px; flex-wrap:wrap; }
-  .foot-col h4{ font-size:12.5px; letter-spacing:0.08em; text-transform:uppercase; color:var(--text-faint); margin-bottom:14px; }
-  .foot-col a{ display:block; color:var(--text-dim); font-size:14px; margin-bottom:10px; transition:color .2s ease; }
-  .foot-col a:hover{ color:var(--text); }
-  .foot-bottom{
-    margin-top:56px; padding-top:24px; border-top:1px solid var(--surface-line);
-    display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px;
-    font-size:12.5px; color:var(--text-faint);
+  .hero .btn {
+    background: #111;
+    color: #fff;
+    padding: 12px 24px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
   }
 
-  /* ---------- RESPONSIVE ---------- */
-  @media (max-width: 900px){
-    .navlinks{ gap:20px; }
-    .navlinks a:not(.cta){ display:none; }
-    .hero{ grid-template-columns:1fr; padding-top:64px; }
-    .rings-stage{ order:-1; margin-bottom:8px; }
-    .rings-stage svg{ max-width:300px; }
-    .layers-grid{ grid-template-columns:1fr; }
-    .diagram-pin{ position:relative; top:0; margin-bottom:20px; }
-    .layer-row{ grid-template-columns:20px 1fr; }
-    .layer-desc{ grid-column:2 / -1; }
-    .cards{ grid-template-columns:1fr; }
+  .hero .btn:hover {
+    background: #333;
   }
 </style>
-</head>
-<body>
-
-<header>
-  <nav>
-    <div class="logo">
-      <svg class="mark" viewBox="0 0 20 20"><circle cx="10" cy="10" r="9" fill="none" stroke="url(#navGrad)" stroke-width="1.4"/><circle cx="10" cy="10" r="3.4" fill="#f4ecd8"/><defs><linearGradient id="navGrad" x1="0" y1="0" x2="20" y2="20"><stop offset="0%" stop-color="#e8a3bf"/><stop offset="100%" stop-color="#a98ae8"/></linearGradient></defs></svg>
-      Aura Awareness
-    </div>
-    <div class="navlinks">
-      <a href="#layers">The Seven Layers</a>
-      <a href="#practice">Practice</a>
-      <a href="#contact" class="cta">Book a reading</a>
-    </div>
-  </nav>
-</header>
-
-<section class="hero">
-  <div>
-    <div class="eyebrow">Energy literacy, not mysticism</div>
-    <h1>Your energy has a shape. <em>Learn to read it.</em></h1>
-    <p class="lede">Aura Awareness teaches you to notice, name, and interpret the field that surrounds every living thing — through guided readings, hands-on sessions, and a daily practice you can keep for life.</p>
-    <div class="actions">
-      <a href="#contact" class="btn-primary">Book a reading — $85</a>
-      <a href="#layers" class="link-secondary">See what a reading shows you</a>
-    </div>
-  </div>
-
-  <div class="rings-stage">
-    <svg viewBox="0 0 460 460">
-      <g class="r7"><circle class="ring-glow" cx="230" cy="230" r="210" stroke="#f4ecd8"/><circle class="ring" cx="230" cy="230" r="210" stroke="#f4ecd8"/></g>
-      <g class="r6"><circle class="ring-glow" cx="230" cy="230" r="182" stroke="#a98ae8"/><circle class="ring" cx="230" cy="230" r="182" stroke="#a98ae8"/></g>
-      <g class="r5"><circle class="ring-glow" cx="230" cy="230" r="154" stroke="#6f86e8"/><circle class="ring" cx="230" cy="230" r="154" stroke="#6f86e8"/></g>
-      <g class="r4"><circle class="ring-glow" cx="230" cy="230" r="126" stroke="#7fd9be"/><circle class="ring" cx="230" cy="230" r="126" stroke="#7fd9be"/></g>
-      <g class="r3"><circle class="ring-glow" cx="230" cy="230" r="98" stroke="#e3b23c"/><circle class="ring" cx="230" cy="230" r="98" stroke="#e3b23c"/></g>
-      <g class="r2"><circle class="ring-glow" cx="230" cy="230" r="70" stroke="#e8a3bf"/><circle class="ring" cx="230" cy="230" r="70" stroke="#e8a3bf"/></g>
-      <g class="r1"><circle class="ring-glow" cx="230" cy="230" r="42" stroke="#8fc8e8"/><circle class="ring" cx="230" cy="230" r="42" stroke="#8fc8e8"/></g>
-      <circle class="core" cx="230" cy="230" r="7"/>
-    </svg>
-  </div>
-</section>
-
-<section class="layers" id="layers">
-  <div class="wrap">
-    <div class="section-head reveal">
-      <div class="eyebrow">What you're actually seeing</div>
-      <h2>An aura isn't one thing. It's seven.</h2>
-      <p>Each layer sits a little further from the body and carries different information — from physical vitality near the skin to a sense of connection at the outer edge. Hover a layer to see where it sits.</p>
-    </div>
-
-    <div class="layers-grid">
-      <div class="layer-list reveal">
-        <div class="layer-row" data-layer="1">
-          <div class="swatch" style="background:var(--sky); color:var(--sky);"></div>
-          <div class="layer-name">Etheric</div>
-          <div class="layer-desc">Closest to the body. Reflects physical vitality — sleep, tension, and how grounded you feel today.</div>
-        </div>
-        <div class="layer-row" data-layer="2">
-          <div class="swatch" style="background:var(--rose); color:var(--rose);"></div>
-          <div class="layer-name">Emotional</div>
-          <div class="layer-desc">Carries what you're feeling, including what you haven't said out loud yet.</div>
-        </div>
-        <div class="layer-row" data-layer="3">
-          <div class="swatch" style="background:var(--gold); color:var(--gold);"></div>
-          <div class="layer-name">Mental</div>
-          <div class="layer-desc">Your thought patterns — clarity, rumination, and the beliefs running quietly in the background.</div>
-        </div>
-        <div class="layer-row" data-layer="4">
-          <div class="swatch" style="background:var(--teal); color:var(--teal);"></div>
-          <div class="layer-name">Astral</div>
-          <div class="layer-desc">The heart layer. How you connect — to people, to work, to the room you're standing in.</div>
-        </div>
-        <div class="layer-row" data-layer="5">
-          <div class="swatch" style="background:var(--blue); color:var(--blue);"></div>
-          <div class="layer-name">Etheric Template</div>
-          <div class="layer-desc">A kind of blueprint layer — where intention and will start to take shape before action.</div>
-        </div>
-        <div class="layer-row" data-layer="6">
-          <div class="swatch" style="background:var(--violet); color:var(--violet);"></div>
-          <div class="layer-name">Celestial</div>
-          <div class="layer-desc">Where spiritual feeling lives — awe, faith, the sense of something larger than the everyday.</div>
-        </div>
-        <div class="layer-row" data-layer="7">
-          <div class="swatch" style="background:var(--white); color:var(--white);"></div>
-          <div class="layer-name">Ketheric</div>
-          <div class="layer-desc">The outermost field. Broad, quiet, and slow to change — a sense of your place in things.</div>
-        </div>
-      </div>
-
-      <div class="diagram-pin reveal">
-        <svg viewBox="0 0 460 460">
-          <circle class="ring" data-ring="7" cx="230" cy="230" r="210" stroke="#f4ecd8"/>
-          <circle class="ring" data-ring="6" cx="230" cy="230" r="182" stroke="#a98ae8"/>
-          <circle class="ring" data-ring="5" cx="230" cy="230" r="154" stroke="#6f86e8"/>
-          <circle class="ring" data-ring="4" cx="230" cy="230" r="126" stroke="#7fd9be"/>
-          <circle class="ring" data-ring="3" cx="230" cy="230" r="98" stroke="#e3b23c"/>
-          <circle class="ring" data-ring="2" cx="230" cy="230" r="70" stroke="#e8a3bf"/>
-          <circle class="ring" data-ring="1" cx="230" cy="230" r="42" stroke="#8fc8e8"/>
-          <circle class="core" cx="230" cy="230" r="7"/>
-        </svg>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="practice">
-  <div class="wrap">
-    <div class="section-head reveal">
-      <div class="eyebrow">How sessions work</div>
-      <h2>Three ways to begin</h2>
-      <p>Start wherever makes sense — a single reading, ongoing clearing work, or a group circle if you'd rather learn alongside others.</p>
-    </div>
-
-    <div class="cards reveal">
-      <div class="card">
-        <div class="tag">Individual · 45 min</div>
-        <h3>Aura Reading</h3>
-        <p>A one-on-one session where we go layer by layer through your current field and talk through what's showing up.</p>
-        <div class="meta"><span>In person or video</span><span>$85</span></div>
-      </div>
-      <div class="card">
-        <div class="tag">Individual · 60 min</div>
-        <h3>Guided Clearing</h3>
-        <p>Hands-on energy work focused on the layers that are carrying the most tension, with grounding techniques to take home.</p>
-        <div class="meta"><span>In person only</span><span>$120</span></div>
-      </div>
-      <div class="card">
-        <div class="tag">Group · 2 hrs</div>
-        <h3>Circle Workshop</h3>
-        <p>Small-group practice where you learn to read auras yourself, starting with your own field and a partner exercise.</p>
-        <div class="meta"><span>Max 8 people</span><span>$60</span></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="quote">
-  <div class="wrap reveal">
-    <blockquote>"I expected something vague. Instead I got specific — and it matched exactly what I'd been avoiding thinking about."</blockquote>
-    <cite>— Maren R., after her first reading</cite>
-  </div>
-</section>
-
-<section id="contact">
-  <div class="wrap">
-    <div class="cta-banner reveal">
-      <h2>Ready to see your field?</h2>
-      <p>First-time readings include a walkthrough of all seven layers and a short recording to take home.</p>
-      <a href="#" class="btn-primary">Book your first reading — $85</a>
-    </div>
-  </div>
-</section>
-
-<footer>
-  <div class="wrap">
-    <div class="foot-top">
-      <div class="foot-brand">
-        <div class="logo">
-          <svg class="mark" viewBox="0 0 20 20"><circle cx="10" cy="10" r="9" fill="none" stroke="url(#footGrad)" stroke-width="1.4"/><circle cx="10" cy="10" r="3.4" fill="#f4ecd8"/><defs><linearGradient id="footGrad" x1="0" y1="0" x2="20" y2="20"><stop offset="0%" stop-color="#e8a3bf"/><stop offset="100%" stop-color="#a98ae8"/></linearGradient></defs></svg>
-          Aura Awareness
-        </div>
-        <p>Energy readings, clearing sessions, and workshops for people who want the practical version.</p>
-      </div>
-      <div class="foot-cols">
-        <div class="foot-col">
-          <h4>Site</h4>
-          <a href="#layers">The Seven Layers</a>
-          <a href="#practice">Practice</a>
-          <a href="#contact">Book a reading</a>
-        </div>
-        <div class="foot-col">
-          <h4>Connect</h4>
-          <a href="#">Instagram</a>
-          <a href="#">Newsletter</a>
-          <a href="#">Contact</a>
-        </div>
-      </div>
-    </div>
-    <div class="foot-bottom">
-      <span>© 2026 Aura Awareness</span>
-      <span>Privacy · Terms</span>
-    </div>
-  </div>
-</footer>
-
-<script>
-  // scroll reveal
-  const revealEls = document.querySelectorAll('.reveal');
-  const io = new IntersectionObserver((entries)=>{
-    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
-  }, { threshold: 0.15 });
-  revealEls.forEach(el=> io.observe(el));
-
-  // sync layer list hover with pinned diagram
-  const rows = document.querySelectorAll('.layer-row');
-  const rings = document.querySelectorAll('.diagram-pin .ring');
-  rows.forEach(row=>{
-    row.addEventListener('mouseenter', ()=>{
-      const n = row.getAttribute('data-layer');
-      rings.forEach(r=> r.classList.toggle('active', r.getAttribute('data-ring') === n));
-    });
-    row.addEventListener('mouseleave', ()=>{
-      rings.forEach(r=> r.classList.remove('active'));
-    });
-  });
-</script>
 
 </body>
 </html>
